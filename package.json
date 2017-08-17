@@ -1,5 +1,5 @@
 {
-    "name": "aqicalc-js",
+    "name": "aqicalc",
     "version": "1.0.0",
     "description": "Air Quality Index (AQI) Calculator",
     "main": "./lib/index.js",

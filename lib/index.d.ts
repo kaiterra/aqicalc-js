@@ -3,6 +3,7 @@ export interface AirQualityIndexComponents {
     NO2: number;
     PM10: number;
     CO: number;
+    CO2: number;
     O3: number;
     PM2_5: number;
     TVOC: number;

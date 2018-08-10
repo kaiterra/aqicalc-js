@@ -2,17 +2,7 @@
 # yarn lockfile v1
 
 
-"@types/d3-scale@^1.0.9":
-  version "1.0.9"
-  resolved "https://registry.yarnpkg.com/@types/d3-scale/-/d3-scale-1.0.9.tgz#8c0891a540bb4b4bdcd0dd04e859c637da39168f"
-  dependencies:
-    "@types/d3-time" "*"
-
-"@types/d3-time@*":
-  version "1.0.6"
-  resolved "https://registry.yarnpkg.com/@types/d3-time/-/d3-time-1.0.6.tgz#4200e575aee591ee7078d4a5c235dff69dadf782"
-
-"@types/jest@^19.2.3":
+"@types/jest@19.2.3":
   version "19.2.3"
   resolved "https://registry.yarnpkg.com/@types/jest/-/jest-19.2.3.tgz#61748040e8589a891dfc2ec1d16a2dd74482980e"
 
@@ -409,7 +399,7 @@ code-point-at@^1.0.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/code-point-at/-/code-point-at-1.1.0.tgz#0d070b4d043a5bea33a2f1a40e2edb3d9a4ccf77"
 
-codecov@^2.2.0:
+codecov@2.2.0:
   version "2.2.0"
   resolved "https://registry.yarnpkg.com/codecov/-/codecov-2.2.0.tgz#2d06817ceb8891eca6368836d4fb6bf6cc04ffd1"
   dependencies:
@@ -477,50 +467,6 @@ cssom@0.3.x, "cssom@>= 0.3.2 < 0.4.0":
   resolved "https://registry.yarnpkg.com/cssstyle/-/cssstyle-0.2.37.tgz#541097234cb2513c83ceed3acddc27ff27987d54"
   dependencies:
     cssom "0.3.x"
-
-d3-array@^1.2.0:
-  version "1.2.0"
-  resolved "https://registry.yarnpkg.com/d3-array/-/d3-array-1.2.0.tgz#147d269720e174c4057a7f42be8b0f3f2ba53108"
-
-d3-collection@1:
-  version "1.0.3"
-  resolved "https://registry.yarnpkg.com/d3-collection/-/d3-collection-1.0.3.tgz#00bdea94fbc1628d435abbae2f4dc2164e37dd34"
-
-d3-color@1:
-  version "1.0.3"
-  resolved "https://registry.yarnpkg.com/d3-color/-/d3-color-1.0.3.tgz#bc7643fca8e53a8347e2fbdaffa236796b58509b"
-
-d3-format@1:
-  version "1.2.0"
-  resolved "https://registry.yarnpkg.com/d3-format/-/d3-format-1.2.0.tgz#6b480baa886885d4651dc248a8f4ac9da16db07a"
-
-d3-interpolate@1:
-  version "1.1.5"
-  resolved "https://registry.yarnpkg.com/d3-interpolate/-/d3-interpolate-1.1.5.tgz#69e099ff39214716e563c9aec3ea9d1ea4b8a79f"
-  dependencies:
-    d3-color "1"
-
-d3-scale@^1.0.6:
-  version "1.0.6"
-  resolved "https://registry.yarnpkg.com/d3-scale/-/d3-scale-1.0.6.tgz#bce19da80d3a0cf422c9543ae3322086220b34ed"
-  dependencies:
-    d3-array "^1.2.0"
-    d3-collection "1"
-    d3-color "1"
-    d3-format "1"
-    d3-interpolate "1"
-    d3-time "1"
-    d3-time-format "2"
-
-d3-time-format@2:
-  version "2.0.5"
-  resolved "https://registry.yarnpkg.com/d3-time-format/-/d3-time-format-2.0.5.tgz#9d7780204f7c9119c9170b1a56db4de9a8af972e"
-  dependencies:
-    d3-time "1"
-
-d3-time@1:
-  version "1.0.6"
-  resolved "https://registry.yarnpkg.com/d3-time/-/d3-time-1.0.6.tgz#a55b13d7d15d3a160ae91708232e0835f1d5e945"
 
 dashdash@^1.12.0:
   version "1.14.1"
@@ -1290,7 +1236,7 @@ jest-validate@^20.0.3:
     leven "^2.1.0"
     pretty-format "^20.0.3"
 
-jest@^20.0.4:
+jest@20.0.4:
   version "20.0.4"
   resolved "https://registry.yarnpkg.com/jest/-/jest-20.0.4.tgz#3dd260c2989d6dad678b1e9cc4d91944f6d602ac"
   dependencies:
@@ -2088,7 +2034,7 @@ trim-right@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/trim-right/-/trim-right-1.0.1.tgz#cb2e1203067e0c8de1f614094b9fe45704ea6003"
 
-ts-jest@^20.0.4:
+ts-jest@20.0.4:
   version "20.0.4"
   resolved "https://registry.yarnpkg.com/ts-jest/-/ts-jest-20.0.4.tgz#ffe3987d48c8762cd7b6ae83518d203eca167618"
   dependencies:
@@ -2124,7 +2070,7 @@ type-check@~0.3.1:
   dependencies:
     prelude-ls "~1.1.2"
 
-typescript@^2.3.3:
+typescript@2.3.3:
   version "2.3.3"
   resolved "https://registry.yarnpkg.com/typescript/-/typescript-2.3.3.tgz#9639f3c3b40148e8ca97fe08a51dd1891bb6be22"
 

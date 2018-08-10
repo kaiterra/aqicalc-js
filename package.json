@@ -30,11 +30,11 @@
         "d3-scale": "^1.0.6"
     },
     "devDependencies": {
-        "@types/jest": "^19.2.3",
-        "codecov": "^2.2.0",
-        "jest": "^20.0.4",
-        "ts-jest": "^20.0.4",
-        "typescript": "^2.3.3"
+        "@types/jest": "19.2.3",
+        "codecov": "2.2.0",
+        "jest": "20.0.4",
+        "ts-jest": "20.0.4",
+        "typescript": "2.3.3"
     },
     "jest": {
         "transform": {

@@ -7,21 +7,17 @@ This is a utility to calculate Air Quality Index (AQI) with the input of concent
 
 ## Making Changes
 
-To modify this code, edit the .ts files and then compile.
+To modify this code, edit the .ts files and then build.
 
-### Prerequisites
-Install typescript globally:
+### Building
 ```
-npm install -g typescript@2.3.3
+yarn build
 ```
 
-### Compiling
-If you modified e.g. index.ts, compile it with:
+### Testing
 ```
-tsc --lib es6 --outDir lib src/index.ts
+yarn test
 ```
-This will put the compiled index.js into the lib folder.
-
 
 ## References
 

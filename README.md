@@ -11,13 +11,16 @@ To modify this code, edit the .ts files and then build.
 
 ### Building
 ```
+yarn install
 yarn build
 ```
 
 ### Testing
 ```
-yarn test
+npm run test
 ```
+
+Note that running tests this way only works when aqicalc-js isn't in the node_modules folder of another project.
 
 ## References
 

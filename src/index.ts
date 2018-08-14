@@ -4,12 +4,12 @@ const IAQI_SCALE = [0, 50, 100, 150, 200, 300, 500];
 
 const SO2_SCALE = <AirQualityBreakpoints>{
   CN: [0, 50, 150, 475, 800, 1600, 2620],
-  IN: [0, 40,  80, 380, 800, 1600, 2620], //TODO: 2620 here?
+  IN: [0, 40, 80, 380, 800, 1600, 2620],
   US: [0, 35, 75, 185, 304, 604, 1004]
 }
 const NO2_SCALE = <AirQualityBreakpoints>{
   CN: [0, 40, 80, 180, 280, 565, 940],
-  IN: [0, 50, 100, 250, 350, 430, 600],
+  IN: [0, 40, 80, 180, 280, 400, 940],
   US: [0, 99.64, 188, 676.8, 1220, 2350, 3850]
 }
 const PM10_SCALE = <AirQualityBreakpoints>{
@@ -19,7 +19,7 @@ const PM10_SCALE = <AirQualityBreakpoints>{
 }
 const CO_SCALE = <AirQualityBreakpoints>{
   CN: [0, 2, 4, 14, 24, 36, 60],
-  IN: [0, 1, 2, 10, 17, 34, 60], //TODO: 60 here?
+  IN: [0, 1, 2, 10, 17, 34, 60],
   US: [0, 5.038, 10.763, 14.198, 17.633, 34.35, 57.708]
 }
 const CO2_SCALE = <AirQualityBreakpoints>{

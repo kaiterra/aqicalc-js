@@ -56,6 +56,77 @@ describe('aqicalc', function() {
 
 
 /**
+ * Test for AQI India Data
+ */
+describe('aqicalc', function() {
+    it('should be empty when all zero value', () => {
+        let data = { SO2: 0, NO2: 0, PM10: 0, CO: 0, O3: 0, PM2_5: 0 };
+        expect(AQICalc(data, 'IN')).toEqual([]);
+    });
+    it('should be aqi=137, primary=SO2 when 300, 0, 0, 0, 0, 0', () => {
+        let data = { SO2: 300, NO2: 0, PM10: 0, CO: 0, O3: 0, PM2_5: 0 };
+        expect(AQICalc(data, 'IN')).toEqual([{ aqi: 137, pollutant: "SO2" }]);
+    });
+    it('should be aqi=217, primary=NO2 when 0, 300, 0, 0, 0, 0', () => {
+        let data = { SO2: 0, NO2: 300, PM10: 0, CO: 0, O3: 0, PM2_5: 0 };
+        expect(AQICalc(data, 'IN')).toEqual([{ aqi: 217, pollutant: "NO2" }]);
+    });
+    it('should be aqi=335, primary=PM10 when 0, 0, 460, 0, 0, 0', () => {
+        let data = { SO2: 0, NO2: 0, PM10: 460, CO: 0, O3: 0, PM2_5: 0 };
+        expect(AQICalc(data, 'IN')).toEqual([{ aqi: 335, pollutant: "PM10" }]);
+    });
+    it('should be aqi=235, primary=CO when 0, 0, 0, 23, 0, 0', () => {
+        let data = { SO2: 0, NO2: 0, PM10: 0, CO: 23, O3: 0, PM2_5: 0 };
+        expect(AQICalc(data, 'IN')).toEqual([{ aqi: 235, pollutant: "CO" }]);
+    });
+    it('should be aqi=201, primary=O3 when 0, 0, 0, 0, 216, 0', () => {
+        let data = { SO2: 0, NO2: 0, PM10: 0, CO: 0, O3: 216, PM2_5: 0 };
+        expect(AQICalc(data, 'IN')).toEqual([{ aqi: 201, pollutant: "O3" }]);
+    });
+    it('should be aqi=287, primary=PM2.5 when 0, 0, 0, 0, 0, 233', () => {
+        let data = { SO2: 0, NO2: 0, PM10: 0, CO: 0, O3: 0, PM2_5: 233 };
+        expect(AQICalc(data, 'IN')).toEqual([{ aqi: 287, pollutant: "PM2.5" }]);
+    });
+    it('should be aqi=0, primary=PM2.5 when -10, -1, -4, -3, -2, -1', () => {
+        let data = { SO2: -10, NO2: -1, PM10: -4, CO: -3, O3: -2, PM2_5: -1 };
+        expect(AQICalc(data, 'IN')).toEqual([]);
+    });
+    it('should be aqi=500, primary=PM2.5 when 10, 10, 10, 10, 10, 10000', () => {
+        let data = { SO2: 10, NO2: 10, PM10: 10, CO: 10, O3: 10, PM2_5: 10000 };
+        expect(AQICalc(data, 'IN')).toEqual([{ aqi: 500, pollutant: "PM2.5" }]);
+    });
+    it('should be aqi=0, primary=TVOC when 125, 10, 10, 10, 10, 10, 10', () => {
+        let data = { TVOC: 126, SO2: 0, NO2: 0, PM10: 0, CO: 0, O3: 0, PM2_5: 0 };
+        expect(AQICalc(data, 'IN')).toEqual([{ aqi: 1, pollutant: "TVOC" }]);
+    });
+    it('should be aqi=500, primary=TVOC when 10000, 10, 10, 10, 10, 10, 10', () => {
+        let data = { TVOC: 10000, SO2: 10, NO2: 10, PM10: 10, CO: 10, O3: 10, PM2_5: 10 };
+        expect(AQICalc(data, 'IN')).toEqual([{ aqi: 500, pollutant: "TVOC" }]);
+    });
+    it('should be aqi=200, primary=CO2 when 1000, 10, 10, 10, 10, 10, 10, 10', () => {
+        let data = { CO2: 2500, TVOC: 10, SO2: 10, NO2: 10, PM10: 10, CO: 0, O3: 10, PM2_5: 10 };
+        expect(AQICalc(data, 'IN')).toEqual([{ aqi: 200, pollutant: "CO2" }]);
+    });
+    it('should be aqi=500, primary=NO2 when 10, 10, 10000, 10, 10, 10, 10', () => {
+        let data = { TVOC: 10, SO2: 10, NO2: 10000, PM10: 10, CO: 10, O3: 10, PM2_5: 10 };
+        expect(AQICalc(data, 'IN')).toEqual([{ aqi: 500, pollutant: "NO2" }]);
+    });
+    it('should be aqi=500, primary=PM10 when 10, 10, 10, 10000, 10, 10, 10', () => {
+        let data = { TVOC: 10, SO2: 10, NO2: 10, PM10: 10000, CO: 10, O3: 10, PM2_5: 10 };
+        expect(AQICalc(data, 'IN')).toEqual([{ aqi: 500, pollutant: "PM10" }]);
+    });
+    it('should be aqi=500, primary=CO when 10, 10, 10, 10, 10000, 10, 10', () => {
+        let data = { TVOC: 10, SO2: 10, NO2: 10, PM10: 10, CO: 10000, O3: 10, PM2_5: 10 };
+        expect(AQICalc(data, 'IN')).toEqual([{ aqi: 500, pollutant: "CO" }]);
+    });
+    it('should be aqi=500, primary=O3 when 10, 10, 10, 10, 10, 10000, 10', () => {
+        let data = { TVOC: 10, SO2: 10, NO2: 10, PM10: 10, CO: 10, O3: 10000, PM2_5: 10 };
+        expect(AQICalc(data, 'IN')).toEqual([{ aqi: 500, pollutant: "O3" }]);
+    });
+});
+
+
+/**
  * Test for AQI US Data
  */
  describe('aqicalc', function() {

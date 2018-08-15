@@ -15,6 +15,7 @@ export interface PrimaryPollutantValue {
 export interface AirQualityBreakpoints {
     [key: string]: number[];
     CN: number[];
+    IN: number[];
     US: number[];
 }
 export declare const AQICalc: (components: AirQualityIndexComponents, standard: string) => PrimaryPollutantValue[];

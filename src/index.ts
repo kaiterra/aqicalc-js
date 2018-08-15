@@ -1,26 +1,28 @@
 import * as d3Scale from "d3-scale";
 
-const IAQI_SCALE = [0, 50, 100, 150, 200, 300, 500];
+const IAQI_SCALE_CN = [0, 50, 100, 150, 200, 300, 500];
+const IAQI_SCALE_IN = [0, 50, 100, 200, 300, 400, 500];
+const IAQI_SCALE_US = [0, 50, 100, 150, 200, 300, 500];
 
 const SO2_SCALE = <AirQualityBreakpoints>{
   CN: [0, 50, 150, 475, 800, 1600, 2620],
   IN: [0, 40, 80, 380, 800, 1600, 2620],
-  US: [0, 35, 75, 185, 304, 604, 1004]
+  US: [0, 98.7, 212, 522, 857, 1700, 2832]
 }
 const NO2_SCALE = <AirQualityBreakpoints>{
   CN: [0, 40, 80, 180, 280, 565, 940],
-  IN: [0, 40, 80, 180, 280, 400, 940],
-  US: [0, 99.64, 188, 676.8, 1220, 2350, 3850]
+  IN: [0, 40, 80, 180, 280, 400, 900],
+  US: [0, 65.4, 123, 444, 800, 1540, 2034]
 }
 const PM10_SCALE = <AirQualityBreakpoints>{
   CN: [0, 50, 150, 250, 350, 420, 600],
   IN: [0, 50, 100, 250, 350, 430, 600],
-  US: [0, 54, 154, 254, 354, 424, 600]
+  US: [0, 54, 154, 254, 354, 424, 604]
 }
 const CO_SCALE = <AirQualityBreakpoints>{
-  CN: [0, 2, 4, 14, 24, 36, 60],
-  IN: [0, 1, 2, 10, 17, 34, 60],
-  US: [0, 5.038, 10.763, 14.198, 17.633, 34.35, 57.708]
+  CN: [0, 2000, 4000, 14000, 24000, 36000, 60000],
+  IN: [0, 1000, 2000, 10000, 17000, 34000, 49000],
+  US: [0, 5427, 11600, 15300, 19000, 37500, 49800]
 }
 const CO2_SCALE = <AirQualityBreakpoints>{
   CN: [400, 1000, 1500, 2000, 2500, 5000, 10000],
@@ -29,8 +31,8 @@ const CO2_SCALE = <AirQualityBreakpoints>{
 }
 const O3_SCALE = <AirQualityBreakpoints>{
   CN: [0, 160, 200, 300, 400, 800, 1200],
-  IN: [0,  50, 100, 168, 208, 748, 1208],
-  US: [0, 160, 250, 328, 408, 808, 1208]
+  IN: [0, 50, 100, 168, 208, 748, 1000],
+  US: [0, 114, 148, 347, 431, 854, 1070]
 }
 const PM25_SCALE = <AirQualityBreakpoints>{
   CN: [0, 35, 75, 115, 150, 250, 500],
@@ -46,7 +48,16 @@ const TVOC_SCALE = <AirQualityBreakpoints>{
 const Constrain = (min: number, max: number) => (x: number) =>
     x < min ? min : (x > max ? max : x);
 
-const IAQI_Scale = d3Scale.scaleLinear<number, number>().range(IAQI_SCALE);
+function IAQI_Scale(standard: string) {
+    if (standard == 'CN') {
+        return d3Scale.scaleLinear<number, number>().range(IAQI_SCALE_CN);
+    }
+    else if (standard == 'IN') {
+        return d3Scale.scaleLinear<number, number>().range(IAQI_SCALE_IN);
+    }
+    // Default US
+    return d3Scale.scaleLinear<number, number>().range(IAQI_SCALE_US);
+}
 
 const AQI_Constraint = Constrain(0, 500);
 
@@ -69,19 +80,20 @@ export interface PrimaryPollutantValue {
 export interface AirQualityBreakpoints {
   [key: string]: number[];
   CN: number[];
+  IN: number[];
   US: number[];
 }
 
 export const AQICalc = (components: AirQualityIndexComponents, standard: string): PrimaryPollutantValue[] =>
     [
-        { aqi: IAQI_Scale.domain(SO2_SCALE[standard])(components.SO2), pollutant: "SO2" },
-        { aqi: IAQI_Scale.domain(NO2_SCALE[standard])(components.NO2), pollutant: "NO2" },
-        { aqi: IAQI_Scale.domain(PM10_SCALE[standard])(components.PM10), pollutant: "PM10" },
-        { aqi: IAQI_Scale.domain(CO_SCALE[standard])(components.CO), pollutant: "CO" },
-        { aqi: IAQI_Scale.domain(CO2_SCALE[standard])(components.CO2), pollutant: "CO2" },
-        { aqi: IAQI_Scale.domain(O3_SCALE[standard])(components.O3), pollutant: "O3" },
-        { aqi: IAQI_Scale.domain(PM25_SCALE[standard])(components.PM2_5), pollutant: "PM2.5" },
-        { aqi: IAQI_Scale.domain(TVOC_SCALE[standard])(components.TVOC), pollutant: "TVOC" }
+        { aqi: IAQI_Scale(standard).domain(SO2_SCALE[standard])(components.SO2), pollutant: "SO2" },
+        { aqi: IAQI_Scale(standard).domain(NO2_SCALE[standard])(components.NO2), pollutant: "NO2" },
+        { aqi: IAQI_Scale(standard).domain(PM10_SCALE[standard])(components.PM10), pollutant: "PM10" },
+        { aqi: IAQI_Scale(standard).domain(CO_SCALE[standard])(components.CO), pollutant: "CO" },
+        { aqi: IAQI_Scale(standard).domain(CO2_SCALE[standard])(components.CO2), pollutant: "CO2" },
+        { aqi: IAQI_Scale(standard).domain(O3_SCALE[standard])(components.O3), pollutant: "O3" },
+        { aqi: IAQI_Scale(standard).domain(PM25_SCALE[standard])(components.PM2_5), pollutant: "PM2.5" },
+        { aqi: IAQI_Scale(standard).domain(TVOC_SCALE[standard])(components.TVOC), pollutant: "TVOC" }
     ]
         .map((d) => Object.assign({}, d, { aqi: AQI_Constraint(d.aqi) }))
         .filter((d) => d.aqi > 0)

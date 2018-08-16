@@ -4,6 +4,22 @@ const IAQI_SCALE_CN = [0, 50, 100, 150, 200, 300, 500];
 const IAQI_SCALE_IN = [0, 50, 100, 200, 300, 400, 500];
 const IAQI_SCALE_US = [0, 50, 100, 150, 200, 300, 500];
 
+/**
+ * All pollutant values in these scales are in micrograms (µg) / m^3.
+ * 
+ * AQI breakpoints were taken from:
+ *   China: ?? 
+ *   India: http://cpcb.nic.in/displaypdf.php?id=bmF0aW9uYWwtYWlyLXF1YWxpdHktaW5kZXgvQWJvdXRfQVFJLnBkZg==
+ *   US: https://en.wikipedia.org/wiki/Air_quality_index#Computing_the_AQI
+ * 
+ *   As you can see, those tables are expressed in a few different units.
+ * 
+ *   Conversions from those units to µg/m^3 were done with this this online
+ *   calculator:
+ *      https://www.lenntech.com/calculators/ppm/converter-parts-per-million.htm
+ * 
+ */
+
 const SO2_SCALE = <AirQualityBreakpoints>{
   CN: [0, 50, 150, 475, 800, 1600, 2620],
   IN: [0, 40, 80, 380, 800, 1600, 2620],

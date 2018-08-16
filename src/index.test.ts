@@ -29,6 +29,18 @@ describe('aqicalc', function() {
 
     let standard = 'CN'
 
+
+    // Test toggling between TVOC-driven and PM2.5-driven output AQI
+    it(standard + ' should be TVOC-driven when PM2.5 AOI is slightly lower than TVOC AQI', () => {
+        let data = { PM2_5: 150, TVOC: 605 };
+        expect(AQICalc(data, standard)).toEqual([{ aqi: 201, pollutant: 'TVOC' }]);
+    });
+    it(standard + ' should be PM2.5-driven when PM2.5 AOI is slightly higher than TVOC AQI', () => {
+        let data = { PM2_5: 151, TVOC: 600 };
+        expect(AQICalc(data, standard)).toEqual([{ aqi: 201, pollutant: 'PM2.5' }]);
+    });
+
+
     it(standard + ' should be empty when all zero value', () => {
         let data = { SO2: 0, NO2: 0, PM10: 0, CO: 0, O3: 0, PM2_5: 0 };
         expect(AQICalc(data, standard)).toEqual([]);
@@ -116,6 +128,16 @@ describe('aqicalc', function() {
         expect(AQICalc(data, standard)).toEqual([{ aqi: 103, pollutant: 'O3' }]);
     });
 
+    // Test toggling between TVOC-driven and PM2.5-driven output AQI
+    it(standard + ' should be TVOC-driven when PM2.5 AOI is slightly lower than TVOC AQI', () => {
+        let data = { PM2_5: 90, TVOC: 605 };
+        expect(AQICalc(data, standard)).toEqual([{ aqi: 201, pollutant: 'TVOC' }]);
+    });
+    it(standard + ' should be PM2.5-driven when PM2.5 AOI is slightly higher than TVOC AQI', () => {
+        let data = { PM2_5: 91, TVOC: 600 };
+        expect(AQICalc(data, standard)).toEqual([{ aqi: 203, pollutant: 'PM2.5' }]);
+    });
+
     let testTable = {
         'PM10': {
             µgm3: [51, 101, 251, 351, 431, 600],
@@ -171,6 +193,18 @@ describe('aqicalc', function() {
         let data = { SO2: 0, NO2: 0, PM10: 0, CO: 800, O3: 102, PM2_5: 7 };
         expect(AQICalc(data, standard)).toEqual([{ aqi: 45, pollutant: 'O3' }]);
     });
+
+
+    // Test toggling between TVOC-driven and PM2.5-driven output AQI
+    it(standard + ' should be 201 with TVOC high when TVOC is 605 and PM2.5 is 150', () => {
+        let data = { PM2_5: 150, TVOC: 605 };
+        expect(AQICalc(data, standard)).toEqual([{ aqi: 201, pollutant: 'TVOC' }]);
+    });
+    it(standard + ' should be 201 with PM2.5 high when TVOC is 604 and PM2.5 is 151.4', () => {
+        let data = { PM2_5: 151.4, TVOC: 600 };
+        expect(AQICalc(data, standard)).toEqual([{ aqi: 201, pollutant: 'PM2.5' }]);
+    });
+
 
     let testTable = {
          'PM10': {

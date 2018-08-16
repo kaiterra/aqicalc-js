@@ -48,7 +48,7 @@ const CO2_SCALE = <AirQualityBreakpoints>{
 const O3_SCALE = <AirQualityBreakpoints>{
   CN: [0, 160, 200, 300, 400, 800, 1200],
   IN: [0, 50, 100, 168, 208, 748, 1000],
-  US: [0, 114, 148, 347, 431, 854, 1070]
+  US: [0, 114, 148, 347, 431, 854, 1070] 
 }
 const PM25_SCALE = <AirQualityBreakpoints>{
   CN: [0, 35, 75, 115, 150, 250, 500],
@@ -109,7 +109,7 @@ export const AQICalc = (components: AirQualityIndexComponents, standard: string)
         { aqi: IAQI_Scale(standard).domain(CO2_SCALE[standard])(components.CO2), pollutant: "CO2" },
         { aqi: IAQI_Scale(standard).domain(O3_SCALE[standard])(components.O3), pollutant: "O3" },
         { aqi: IAQI_Scale(standard).domain(PM25_SCALE[standard])(components.PM2_5), pollutant: "PM2.5" },
-        { aqi: IAQI_Scale(standard).domain(TVOC_SCALE[standard])(components.TVOC), pollutant: "TVOC" }
+        { aqi: IAQI_Scale('CN').domain(TVOC_SCALE['CN'])(components.TVOC), pollutant: "TVOC" }
     ]
         .map((d) => Object.assign({}, d, { aqi: AQI_Constraint(d.aqi) }))
         .filter((d) => d.aqi > 0)

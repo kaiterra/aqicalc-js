@@ -84,7 +84,7 @@ describe('aqicalc', function() {
             expectedAQI: [51, 101, 151, 201, 301, 500]
         },
         'TVOC': {
-            µgm3: [201, 305, 501, 605, 1005, 2001],
+            µgm3: [201, 302, 501, 605, 1005, 2001],
             expectedAQI: [51, 101, 151, 201, 301, 500]
         }
     };
@@ -146,8 +146,8 @@ describe('aqicalc', function() {
             expectedAQI: [51, 101, 201, 301, 401, 500]
         },
         'TVOC': {
-            µgm3: [201, 301, 501, 605, 1005, 2001],
-            expectedAQI: [51, 101, 201, 301, 401, 500]
+            µgm3: [201, 302, 501, 605, 1005, 2001],
+            expectedAQI: [51, 101, 151, 201, 301, 500]
         }
     };
 
@@ -172,7 +172,7 @@ describe('aqicalc', function() {
         expect(AQICalc(data, standard)).toEqual([{ aqi: 45, pollutant: 'O3' }]);
     });
 
-     let testTable = {
+    let testTable = {
          'PM10': {
              µgm3: [55, 155, 255, 355, 425, 605],
              expectedAQI: [51, 101, 151, 201, 301, 500]
@@ -202,10 +202,10 @@ describe('aqicalc', function() {
              expectedAQI: [51, 101, 151, 201, 301, 500]
          },
          'TVOC': {
-             µgm3: [201, 305, 501, 605, 1005, 2001],
+             µgm3: [201, 302, 501, 605, 1005, 2001],
              expectedAQI: [51, 101, 151, 201, 301, 500]
          }
-     };
+    };
 
      testAQISteps(standard, testTable);
  });

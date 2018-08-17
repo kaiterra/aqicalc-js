@@ -29,7 +29,6 @@ describe('aqicalc', function() {
 
     let standard = 'CN'
 
-
     // Test toggling between TVOC-driven and PM2.5-driven output AQI
     it(standard + ' should be TVOC-driven when PM2.5 AOI is slightly lower than TVOC AQI', () => {
         let data = { PM2_5: 150, TVOC: 605 };
@@ -189,11 +188,15 @@ describe('aqicalc', function() {
          expect(AQICalc(data, standard)).toEqual([]);
      });
 
-    it(standard + ' should be 45 for CO:800, PM25:7, O3:102', () => {
-        let data = { SO2: 0, NO2: 0, PM10: 0, CO: 800, O3: 102, PM2_5: 7 };
-        expect(AQICalc(data, standard)).toEqual([{ aqi: 45, pollutant: 'O3' }]);
+    it(standard + ' O3 below the O3 inclusion threshold not figured into AQI', () => {
+        let data = { SO2: 0, NO2: 0, PM10: 0, CO: 800, O3: 262, PM2_5: 7 };
+        expect(AQICalc(data, standard)).toEqual([{ aqi: 29, pollutant: 'PM2.5' }]);
     });
 
+    it(standard + ' O3 just above the O3 inclusion threshold *is* figured into AQI', () => {
+        let data = { SO2: 0, NO2: 0, PM10: 0, CO: 800, O3: 263, PM2_5: 7 };
+        expect(AQICalc(data, standard)).toEqual([{ aqi: 101, pollutant: 'O3' }]);
+    });
 
     // Test toggling between TVOC-driven and PM2.5-driven output AQI
     it(standard + ' should be 201 with TVOC high when TVOC is 605 and PM2.5 is 150', () => {
@@ -220,8 +223,8 @@ describe('aqicalc', function() {
              expectedAQI: [51, 101, 151, 201, 301, 500]
          },
          'O3': {
-             µgm3: [115, 151, 348, 436, 855, 1070],
-             expectedAQI: [51, 101, 151, 201, 301, 500]
+             µgm3: [348, 436, 855, 1070],
+             expectedAQI: [151, 201, 301, 500]
          },
          'CO': {
              µgm3: [5500, 11650, 15350, 19100, 37550, 49800],

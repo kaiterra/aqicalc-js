@@ -48,7 +48,7 @@ const CO2_SCALE = <AirQualityBreakpoints>{
 const O3_SCALE = <AirQualityBreakpoints>{
   CN: [0, 160, 200, 300, 400, 800, 1200],
   IN: [0, 50, 100, 168, 208, 748, 1000],
-  US: [0, 114, 148, 347, 431, 854, 1070] 
+  US: [0, 0, 262, 347, 431, 854, 1070] 
 }
 const PM25_SCALE = <AirQualityBreakpoints>{
   CN: [0, 35, 75, 115, 150, 250, 500],
@@ -100,6 +100,18 @@ export interface AirQualityBreakpoints {
   US: number[];
 }
 
+/**
+ * Ozone has a step function on the low end of the US scale,
+ * so we can't just use the linear mapping the same way as 
+ * for the other pollutants
+ */
+function computeO3AQI(standard: string, µgm3: Number) {
+    if ((standard == 'US') && (µgm3 < 263)) {
+        return 0;
+    }
+    return IAQI_Scale(standard).domain(O3_SCALE[standard])(µgm3);
+}
+
 export const AQICalc = (components: AirQualityIndexComponents, standard: string): PrimaryPollutantValue[] =>
     [
         { aqi: IAQI_Scale(standard).domain(SO2_SCALE[standard])(components.SO2), pollutant: "SO2" },
@@ -107,8 +119,9 @@ export const AQICalc = (components: AirQualityIndexComponents, standard: string)
         { aqi: IAQI_Scale(standard).domain(PM10_SCALE[standard])(components.PM10), pollutant: "PM10" },
         { aqi: IAQI_Scale(standard).domain(CO_SCALE[standard])(components.CO), pollutant: "CO" },
         { aqi: IAQI_Scale(standard).domain(CO2_SCALE[standard])(components.CO2), pollutant: "CO2" },
-        { aqi: IAQI_Scale(standard).domain(O3_SCALE[standard])(components.O3), pollutant: "O3" },
+        { aqi: computeO3AQI(standard, components.O3), pollutant: "O3" },
         { aqi: IAQI_Scale(standard).domain(PM25_SCALE[standard])(components.PM2_5), pollutant: "PM2.5" },
+        // TVOC has hardcoded standard since the same pollutant->AQI mapping applies in all situations
         { aqi: IAQI_Scale('CN').domain(TVOC_SCALE['CN'])(components.TVOC), pollutant: "TVOC" }
     ]
         .map((d) => Object.assign({}, d, { aqi: AQI_Constraint(d.aqi) }))

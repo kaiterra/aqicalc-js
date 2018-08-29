@@ -56,9 +56,9 @@ const PM25_SCALE = <AirQualityBreakpoints>{
   US: [0, 12, 35.4, 55.4, 150.4, 250.4, 500.4]
 }
 const TVOC_SCALE = <AirQualityBreakpoints>{
-  CN: [125, 200, 300, 500, 600, 1000, 2000],
-  IN: [125, 200, 300, 500, 600, 1000, 2000],
-  US: [125, 200, 300, 500, 600, 1000, 2000]
+  CN: [125, 200, 300, 450, 600, 1000, 2000],
+  IN: [125, 200, 300, 450, 600, 1000, 2000],
+  US: [125, 200, 300, 450, 600, 1000, 2000]
 }
 
 const Constrain = (min: number, max: number) => (x: number) =>

@@ -20,6 +20,11 @@ const IAQI_SCALE_US = [0, 50, 100, 150, 200, 300, 500];
  * 
  */
 
+const AQI_SCALE = <AirQualityBreakpoints>{
+    CN: IAQI_SCALE_CN,
+    IN: IAQI_SCALE_IN,
+    US: IAQI_SCALE_US
+};
 const SO2_SCALE = <AirQualityBreakpoints>{
   CN: [0, 50, 150, 475, 800, 1600, 2620],
   IN: [0, 40, 80, 380, 800, 1600, 2620],
@@ -141,3 +146,8 @@ export const AQICalc = (components: AirQualityIndexComponents, standard: string)
             }
         }, [])
         .map((d) => Object.assign({}, d, { aqi: Math.round(d.aqi) }));
+
+export const AQI_BREAKPOINTS = AQI_SCALE;
+export const TVOC_BREAKPOINTS = TVOC_SCALE;
+export const PM25_BREAKPOINTS = PM25_SCALE;
+export const CO2_BREAKPOINTS = CO2_SCALE;

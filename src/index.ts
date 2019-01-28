@@ -135,7 +135,7 @@ export const AQICalc = (components: AirQualityIndexComponents, standard: string)
         { aqi: IAQI_Scale(standard).domain(PM25_SCALE[standard])(components.PM2_5), pollutant: "PM2.5" },
         // TVOC has hardcoded standard since the same pollutant->AQI mapping applies in all situations
         { aqi: IAQI_Scale('CN').domain(TVOC_SCALE['CN'])(components.TVOC), pollutant: "TVOC" },
-        { aqi: IAQI_Scale(standard).domain(TVOC_SGP_SCALE['CN'])(components.TVOC_SGP), pollutant: "TVOC_SGP"}
+        { aqi: IAQI_Scale(standard).domain(TVOC_SGP_SCALE[standard])(components.TVOC_SGP), pollutant: "TVOC"}
     ]
         .map((d) => Object.assign({}, d, { aqi: AQI_Constraint(d.aqi) }))
         .filter((d) => d.aqi > 0)

@@ -66,6 +66,12 @@ const TVOC_SCALE = <AirQualityBreakpoints>{
   US: [125, 200, 300, 450, 600, 1000, 2000]
 }
 
+const TVOC_SGP_SCALE = <AirQualityBreakpoints>{
+    CN: [0, 220, 660, 2200, 3300, 4400, 5500],
+    IN: [0, 220, 660, 2200, 3300, 4400, 5500],
+    US: [0, 220, 660, 2200, 3300, 4400, 5500]
+}
+  
 const Constrain = (min: number, max: number) => (x: number) =>
     x < min ? min : (x > max ? max : x);
 
@@ -91,6 +97,7 @@ export interface AirQualityIndexComponents {
     O3: number;
     PM2_5: number;
     TVOC: number;
+    TVOC_SGP: number;
 }
 
 export interface PrimaryPollutantValue {
@@ -127,7 +134,8 @@ export const AQICalc = (components: AirQualityIndexComponents, standard: string)
         { aqi: computeO3AQI(standard, components.O3), pollutant: "O3" },
         { aqi: IAQI_Scale(standard).domain(PM25_SCALE[standard])(components.PM2_5), pollutant: "PM2.5" },
         // TVOC has hardcoded standard since the same pollutant->AQI mapping applies in all situations
-        { aqi: IAQI_Scale('CN').domain(TVOC_SCALE['CN'])(components.TVOC), pollutant: "TVOC" }
+        { aqi: IAQI_Scale('CN').domain(TVOC_SCALE['CN'])(components.TVOC), pollutant: "TVOC" },
+        { aqi: IAQI_Scale(standard).domain(TVOC_SGP_SCALE['CN'])(components.TVOC_SGP), pollutant: "TVOC_SGP"}
     ]
         .map((d) => Object.assign({}, d, { aqi: AQI_Constraint(d.aqi) }))
         .filter((d) => d.aqi > 0)
@@ -151,3 +159,4 @@ export const AQI_BREAKPOINTS = AQI_SCALE;
 export const TVOC_BREAKPOINTS = TVOC_SCALE;
 export const PM25_BREAKPOINTS = PM25_SCALE;
 export const CO2_BREAKPOINTS = CO2_SCALE;
+export const TVOC_SGP_BREAKPOINT = TVOC_SGP_SCALE;

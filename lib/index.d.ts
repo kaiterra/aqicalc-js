@@ -7,6 +7,7 @@ export interface AirQualityIndexComponents {
     O3: number;
     PM2_5: number;
     TVOC: number;
+    TVOC_SGP: number;
 }
 export interface PrimaryPollutantValue {
     aqi: number;
@@ -23,3 +24,4 @@ export declare const AQI_BREAKPOINTS: AirQualityBreakpoints;
 export declare const TVOC_BREAKPOINTS: AirQualityBreakpoints;
 export declare const PM25_BREAKPOINTS: AirQualityBreakpoints;
 export declare const CO2_BREAKPOINTS: AirQualityBreakpoints;
+export declare const TVOC_SGP_BREAKPOINT: AirQualityBreakpoints;

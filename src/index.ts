@@ -11,6 +11,14 @@ const IAQI_SCALE_US = [0, 50, 100, 150, 200, 300, 500];
  *   China: ?? 
  *   India: http://cpcb.nic.in/displaypdf.php?id=bmF0aW9uYWwtYWlyLXF1YWxpdHktaW5kZXgvQWJvdXRfQVFJLnBkZg==
  *   US: https://en.wikipedia.org/wiki/Air_quality_index#Computing_the_AQI
+ *
+ *   * INDIA NOTE: the India spec doesn't specify the end value for the final segment of each 
+ *                 pollutant.  But there's an AQI Calculator spreadsheet linked from their site,
+ *                 which has end values.  Dubious as they are (they simply take the difference
+ *                 between the previous two points, and add that to the low value of the final 
+ *                 segmant), it's semi-endorsed by virtue of being linked by the CPCB site and
+ *                 we don't have anything really better to go on.  
+ *                 Link: https://app.cpcbccr.com/ccr_docs/AQI%20-Calculator.xls
  * 
  *   As you can see, those tables are expressed in a few different units.
  * 
@@ -27,22 +35,22 @@ const AQI_SCALE = <AirQualityBreakpoints>{
 };
 const SO2_SCALE = <AirQualityBreakpoints>{
   CN: [0, 50, 150, 475, 800, 1600, 2620],
-  IN: [0, 40, 80, 380, 800, 1600, 2620],
+  IN: [0, 40, 80, 380, 800, 1600, 2400],
   US: [0, 98.7, 212, 522, 857, 1700, 2832]
 }
 const NO2_SCALE = <AirQualityBreakpoints>{
   CN: [0, 40, 80, 180, 280, 565, 940],
-  IN: [0, 40, 80, 180, 280, 400, 900],
+  IN: [0, 40, 80, 180, 280, 400, 520],
   US: [0, 65.4, 123, 444, 800, 1540, 2034]
 }
 const PM10_SCALE = <AirQualityBreakpoints>{
   CN: [0, 50, 150, 250, 350, 420, 600],
-  IN: [0, 50, 100, 250, 350, 430, 600],
+  IN: [0, 50, 100, 250, 350, 430, 510],
   US: [0, 54, 154, 254, 354, 424, 604]
 }
 const CO_SCALE = <AirQualityBreakpoints>{
   CN: [0, 2000, 4000, 14000, 24000, 36000, 60000],
-  IN: [0, 1000, 2000, 10000, 17000, 34000, 49000],
+  IN: [0, 1000, 2000, 10000, 17000, 34000, 51000],
   US: [0, 5427, 11600, 15300, 19000, 37500, 49800]
 }
 const CO2_SCALE = <AirQualityBreakpoints>{
@@ -52,12 +60,12 @@ const CO2_SCALE = <AirQualityBreakpoints>{
 }
 const O3_SCALE = <AirQualityBreakpoints>{
   CN: [0, 160, 200, 300, 400, 800, 1200],
-  IN: [0, 50, 100, 168, 208, 748, 1000],
+  IN: [0, 50, 100, 168, 208, 748, 1287],
   US: [0, 0, 262, 347, 431, 854, 1070] 
 }
 const PM25_SCALE = <AirQualityBreakpoints>{
   CN: [0, 35, 75, 115, 150, 250, 500],
-  IN: [0, 30, 60,  90, 120, 250, 500],
+  IN: [0, 30, 60,  90, 120, 250, 380],
   US: [0, 12, 35.4, 55.4, 150.4, 250.4, 500.4]
 }
 const TVOC_SCALE = <AirQualityBreakpoints>{

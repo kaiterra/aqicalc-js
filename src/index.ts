@@ -1,6 +1,6 @@
 import * as d3Scale from "d3-scale";
 
-const IAQI_SCALE_CN = [0, 50, 100, 150, 200, 300, 500];
+const IAQI_SCALE_CN = [0, 50, 100, 150, 200, 300, 400, 500];
 const IAQI_SCALE_IN = [0, 50, 100, 200, 300, 400, 500];
 const IAQI_SCALE_US = [0, 50, 100, 150, 200, 300, 500];
 
@@ -26,48 +26,48 @@ const AQI_SCALE = <AirQualityBreakpoints>{
     US: IAQI_SCALE_US
 };
 const SO2_SCALE = <AirQualityBreakpoints>{
-  CN: [0, 50, 150, 475, 800, 1600, 2620],
+  CN: [0, 50, 150, 475, 800, 1600, 2100, 2620],
   IN: [0, 40, 80, 380, 800, 1600, 2620],
   US: [0, 98.7, 212, 522, 857, 1700, 2832]
 }
 const NO2_SCALE = <AirQualityBreakpoints>{
-  CN: [0, 40, 80, 180, 280, 565, 940],
+  CN: [0, 40, 80, 180, 280, 565, 750, 940],
   IN: [0, 40, 80, 180, 280, 400, 900],
   US: [0, 65.4, 123, 444, 800, 1540, 2034]
 }
 const PM10_SCALE = <AirQualityBreakpoints>{
-  CN: [0, 50, 150, 250, 350, 420, 600],
+  CN: [0, 50, 150, 250, 350, 420, 500, 600],
   IN: [0, 50, 100, 250, 350, 430, 600],
   US: [0, 54, 154, 254, 354, 424, 604]
 }
 const CO_SCALE = <AirQualityBreakpoints>{
-  CN: [0, 2000, 4000, 14000, 24000, 36000, 60000],
+  CN: [0, 2000, 4000, 14000, 24000, 36000, 48000, 60000],
   IN: [0, 1000, 2000, 10000, 17000, 34000, 49000],
   US: [0, 5427, 11600, 15300, 19000, 37500, 49800]
 }
 const CO2_SCALE = <AirQualityBreakpoints>{
-  CN: [400, 1000, 1500, 2000, 2500, 5000, 10000],
+  CN: [400, 1000, 1500, 2000, 2500, 5000, 7500, 10000],
   IN: [400, 1000, 1500, 2000, 2500, 5000, 10000],
   US: [400, 1000, 1500, 2000, 2500, 5000, 10000]
 }
 const O3_SCALE = <AirQualityBreakpoints>{
-  CN: [0, 160, 200, 300, 400, 800, 1200],
+  CN: [0, 160, 200, 300, 400, 800, 1000, 1200],
   IN: [0, 50, 100, 168, 208, 748, 1000],
   US: [0, 0, 262, 347, 431, 854, 1070] 
 }
 const PM25_SCALE = <AirQualityBreakpoints>{
-  CN: [0, 35, 75, 115, 150, 250, 500],
+  CN: [0, 35, 75, 115, 150, 250, 350, 500],
   IN: [0, 30, 60,  90, 120, 250, 500],
   US: [0, 12, 35.4, 55.4, 150.4, 250.4, 500.4]
 }
 const TVOC_SCALE = <AirQualityBreakpoints>{
-  CN: [125, 200, 300, 450, 600, 1000, 2000],
+  CN: [125, 200, 300, 450, 600, 1000, 1500, 2000],
   IN: [125, 200, 300, 450, 600, 1000, 2000],
   US: [125, 200, 300, 450, 600, 1000, 2000]
 }
 
 const TVOC_SGP_SCALE = <AirQualityBreakpoints>{
-    CN: [0, 220, 660, 2200, 3300, 4400, 5500],
+    CN: [0, 220, 660, 2200, 3300, 4400, 4950, 5500],
     IN: [0, 220, 660, 2200, 3300, 4400, 5500],
     US: [0, 220, 660, 2200, 3300, 4400, 5500]
 }
@@ -157,6 +157,11 @@ export const AQICalc = (components: AirQualityIndexComponents, standard: string)
 
 export const AQI_BREAKPOINTS = AQI_SCALE;
 export const TVOC_BREAKPOINTS = TVOC_SCALE;
+export const PM10_BREAKPOINTS = PM10_SCALE;
 export const PM25_BREAKPOINTS = PM25_SCALE;
+export const CO_BREAKPOINTS = CO_SCALE;
 export const CO2_BREAKPOINTS = CO2_SCALE;
+export const NO2_BREAKPOINTS = NO2_SCALE;
+export const O3_BREAKPOINTS = O3_SCALE;
+export const SO2_BREAKPOINTS = SO2_SCALE;
 export const TVOC_SGP_BREAKPOINT = TVOC_SGP_SCALE;

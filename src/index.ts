@@ -3,7 +3,7 @@ import * as d3Scale from "d3-scale";
 const IAQI_SCALE_CN = [0, 50, 100, 150, 200, 300, 400, 500];
 const IAQI_SCALE_IN = [0, 50, 100, 200, 300, 400, 500];
 const IAQI_SCALE_US = [0, 50, 100, 150, 200, 300, 500];
-const IAQI_SCALE_AU = [0, 33, 66, 99, 149, 200, 99999];
+const IAQI_SCALE_AU = [0, 33, 66, 99, 149, 199, 99999];
 
 /**
  * All pollutant values in these scales are in micrograms (µg) / m^3.
@@ -168,7 +168,7 @@ export const AQICalc = (components: AirQualityIndexComponents, standard: string)
         { aqi: IAQI_Scale(standard).domain(HCHO_SCALE[standard])(components.HCHO), pollutant: "HCHO"}
     ]
         .map((d) => Object.assign({}, d, { aqi: AQI_Constraint(d.aqi, standard) }))
-        .filter((d) => d.aqi > 0)
+        .filter((d) => d.aqi >= 0)
         .reduce((a, b) => {
             if (a.length === 0) {
                 return [b];
